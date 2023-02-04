@@ -7,9 +7,14 @@ public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField]
     private Text itemText;
+    [SerializeField]
+    private Image image;
 
     //bools
-    private bool havePacifier = false;
+    private bool haveLocket = false;
+    private bool haveLetter = false;
+    private bool haveRing = false;
+    private bool haveScar = false;
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Enemy"))
@@ -19,14 +24,42 @@ public class PlayerInteraction : MonoBehaviour
 
         if (col.CompareTag("Memory"))
         {
-            string name = col.GetComponent<Memory>().memoryName;
+            Memory var = col.GetComponent<Memory>();
+            string name = var.MemoryName;
             switch (name)
             {
-                case "Pacifier":
-                    if (!havePacifier)
+                case "Locket":
+                    if (!haveLocket)
                     {
-                        havePacifier = true;
-                        StartCoroutine(textDelay("PACIFIER!", itemText));
+                        haveLocket = true;
+                        StartCoroutine(textDelay(var.Phrase, itemText, var.Found, var.Icon));
+                        Debug.Log("PACIFIER");
+                    }
+                    break;
+
+                case "Letter":
+                    if (!haveLetter)
+                    {
+                        haveLetter = true;
+                        StartCoroutine(textDelay(var.Phrase, itemText, var.Found, var.Icon));
+                        Debug.Log("PACIFIER");
+                    }
+                    break;
+
+                    case "Scar":
+                    if (!haveScar)
+                    {
+                        haveScar = true;
+                        StartCoroutine(textDelay(var.Phrase, itemText, var.Found, var.Icon));
+                        Debug.Log("PACIFIER");
+                    }
+                    break;
+
+                    case "Ring":
+                    if (!haveRing)
+                    {
+                        haveRing = true;
+                        StartCoroutine(textDelay(var.Phrase, itemText, var.Found, var.Icon));
                         Debug.Log("PACIFIER");
                     }
                     break;
@@ -35,10 +68,18 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    private IEnumerator textDelay(string newText, Text target)
+    private IEnumerator textDelay(string newText, Text target, string found, Sprite icon)
     {
         target.text = newText;
+
+        yield return new WaitForSeconds(6f);
+        target.text = found;
+        image.sprite = icon;
+        image.enabled = true;
+
         yield return new WaitForSeconds(3f);
+
+        image.enabled = false;
         target.text = "";
     }
 }

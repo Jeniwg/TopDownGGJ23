@@ -6,8 +6,6 @@ public class EnemyFieldOfView : MonoBehaviour
 {
     [SerializeField]
     private LayerMask layerMask;
-    [SerializeField]
-    private MeshCollider meshCollider;
     private Mesh mesh;
     private float fov;
     private Vector3 origin;
@@ -24,7 +22,7 @@ public class EnemyFieldOfView : MonoBehaviour
         int rayCount = 25;
         float angle = startingAngle;
         float angleIncrease = fov / rayCount;
-        float viewDistance = 8f;
+        float viewDistance = 25f;
 
         Vector3[] vertices = new Vector3[rayCount + 1 + 1];
         Vector2[] uv = new Vector2[vertices.Length];
@@ -75,7 +73,7 @@ public class EnemyFieldOfView : MonoBehaviour
         mesh.uv = uv;
         mesh.triangles = triangles;
 
-        meshCollider.sharedMesh = mesh;
+        mesh.RecalculateBounds();
     }
 
     public void SetOrigin(Vector3 origin)
@@ -85,7 +83,7 @@ public class EnemyFieldOfView : MonoBehaviour
 
     public void SetAimDirection(Vector3 dir)
     {
-        startingAngle = GetAngleFromVectorFLoat(dir) - fov / 2f;
+        startingAngle = GetAngleFromVectorFLoat(dir) + 45;
     }
 
     private static Vector3 GetVectorFromAngle(float angle)

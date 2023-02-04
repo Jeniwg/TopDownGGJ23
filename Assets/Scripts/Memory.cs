@@ -5,5 +5,11 @@ using UnityEngine;
 public class Memory : MonoBehaviour
 {
     [SerializeField]
-    public string memoryName;
+    public string MemoryName;
+    [SerializeField]
+    public string Phrase;
+    [SerializeField]
+    public string Found;
+    [SerializeField]
+    public Sprite Icon;
 }
