@@ -33,7 +33,6 @@ public class PlayerInteraction : MonoBehaviour
                     {
                         haveLocket = true;
                         StartCoroutine(textDelay(var.Phrase, itemText, var.Found, var.Icon));
-                        Debug.Log("PACIFIER");
                     }
                     break;
 
@@ -42,7 +41,6 @@ public class PlayerInteraction : MonoBehaviour
                     {
                         haveLetter = true;
                         StartCoroutine(textDelay(var.Phrase, itemText, var.Found, var.Icon));
-                        Debug.Log("PACIFIER");
                     }
                     break;
 
@@ -51,7 +49,6 @@ public class PlayerInteraction : MonoBehaviour
                     {
                         haveScar = true;
                         StartCoroutine(textDelay(var.Phrase, itemText, var.Found, var.Icon));
-                        Debug.Log("PACIFIER");
                     }
                     break;
 
@@ -60,7 +57,6 @@ public class PlayerInteraction : MonoBehaviour
                     {
                         haveRing = true;
                         StartCoroutine(textDelay(var.Phrase, itemText, var.Found, var.Icon));
-                        Debug.Log("PACIFIER");
                     }
                     break;
             }
