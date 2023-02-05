@@ -9,7 +9,12 @@ public class PlayerInteraction : MonoBehaviour
     private Text itemText;
     [SerializeField]
     private Image image;
-
+    [SerializeField]
+    private Audio m1;
+    [SerializeField]
+    private Audio m2;
+    [SerializeField]
+    private Audio m3;
     //bools
     private bool haveLocket = false;
     private bool haveLetter = false;
@@ -17,6 +22,22 @@ public class PlayerInteraction : MonoBehaviour
     private bool haveScar = false;
     private void OnTriggerEnter2D(Collider2D col)
     {
+        if(col.CompareTag("Music1"))
+        {
+            m1.StartSound();
+        }
+
+        if(col.CompareTag("Music2"))
+        {
+            m1.Stopsound();
+            m2.StartSound();
+        }
+        if(col.CompareTag("Music3"))
+        {
+            m2.Stopsound();
+            m3.StartSound();
+        }
+
         if (col.CompareTag("Enemy"))
         {
             Debug.Log("ENEMY");
