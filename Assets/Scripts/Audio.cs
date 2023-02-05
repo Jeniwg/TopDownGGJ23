@@ -13,7 +13,7 @@ public class Audio : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(SceneManager.GetActiveScene().buildIndex == 0)
+        if(SceneManager.GetActiveScene().buildIndex == 0 || SceneManager.GetActiveScene().buildIndex == 2)
         {
             StartCoroutine("AudioLoopSetter");
         }

@@ -15,6 +15,8 @@ public class PlayerInteraction : MonoBehaviour
     private Audio m2;
     [SerializeField]
     private Audio m3;
+    
+
     //bools
     private bool haveLocket = false;
     private bool haveLetter = false;
@@ -38,9 +40,10 @@ public class PlayerInteraction : MonoBehaviour
             m3.StartSound();
         }
 
-        if (col.CompareTag("Enemy"))
+        if(col.CompareTag("FInal"))
         {
-            Debug.Log("ENEMY");
+            SceneM bruh = new SceneM();
+            bruh.LoadScene(0);
         }
 
         if (col.CompareTag("Memory"))

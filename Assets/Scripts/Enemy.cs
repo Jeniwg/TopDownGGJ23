@@ -57,7 +57,6 @@ public class Enemy : MonoBehaviour
     {
         Vector3 finalPoint;
         finalPoint = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), 0);
-        Debug.Log(finalPoint);
         return finalPoint;
     }
 }

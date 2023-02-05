@@ -49,7 +49,8 @@ public class EnemyFieldOfView : MonoBehaviour
                 //hit
                 if (raycastHit2d.collider.CompareTag("Player"))
                 {
-                    Debug.Log("ENEMY");
+                    SceneM var = new SceneM();
+                    var.LoadScene(2);
                 }
                 vertex = raycastHit2d.point;
             }

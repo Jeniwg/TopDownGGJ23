@@ -11,6 +11,10 @@ public class PlayerMovement : MonoBehaviour
     private Tilemap tilemap;
     [SerializeField]
     private GameObject PauseScreen;
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+    [SerializeField]
+    private Animator animator;
     Rigidbody2D body;
 
     float horizontal;
@@ -18,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float runSpeed = 5.0f;
     private bool gameIsPaused = false;
+    private Vector2 direction;
 
     void Start()
     {
@@ -29,10 +34,20 @@ public class PlayerMovement : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
+        
+        HandleSpriteFlip();
+        
+        animator.SetFloat("horizontal", horizontal);
+        animator.SetFloat("vertical", vertical);
+
+        direction = new Vector2(horizontal, Input.GetAxisRaw("Vertical")).normalized;
+
         Vector3Int pos = tilemap.WorldToCell(gameObject.transform.position);
         tilemap.SetTile(pos, newSprite);
 
-        if(Input.GetKeyDown(KeyCode.Escape))
+
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             gameIsPaused = !gameIsPaused;
             PauseGame();
@@ -43,19 +58,31 @@ public class PlayerMovement : MonoBehaviour
         body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
     }
 
-    void PauseGame ()
+    void PauseGame()
     {
-        if(gameIsPaused)
+        if (gameIsPaused)
         {
             PauseScreen.SetActive(true);
             Time.timeScale = 0f;
         }
-        else 
+        else
         {
             PauseScreen.SetActive(false);
             Time.timeScale = 1;
         }
     }
 
+    private void HandleSpriteFlip()
+    {
+        if (!spriteRenderer.flipX && direction.x < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if (spriteRenderer.flipX && direction.x > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+
+    }
 
 }
